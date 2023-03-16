@@ -1,9 +1,9 @@
 package ro.unibuc.hello.service;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import ro.unibuc.hello.data.User.User;
 import ro.unibuc.hello.data.product.ProductEntity;
 import ro.unibuc.hello.data.product.ProductRepository;
 import ro.unibuc.hello.data.transaction.TransactionDTO;
@@ -19,12 +19,16 @@ public class TransactionService {
     private TransactionRepository transactionRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private UserService userService;
     public void createTransaction(TransactionDTO transaction) throws Exception {
         TransactionEntity transactionToSave = new TransactionEntity();
 
         transactionToSave.id = UUID.randomUUID().toString();
         transactionToSave.userId = transaction.userId;
         transactionToSave.productsList = transaction.productsList;
+
+        userService.getUserById(transactionToSave.userId);
 
         for (TransactionEntry entry : transactionToSave.productsList)
         {
