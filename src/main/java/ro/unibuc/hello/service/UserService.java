@@ -1,14 +1,11 @@
 package ro.unibuc.hello.service;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import ro.unibuc.hello.data.User.User;
-import ro.unibuc.hello.data.User.UserDTO;
-import ro.unibuc.hello.data.User.UserRepository;
-import ro.unibuc.hello.data.product.ProductEntity;
+import ro.unibuc.hello.data.user.User;
+import ro.unibuc.hello.data.user.UserDTO;
+import ro.unibuc.hello.data.user.UserRepository;
 
 @Service
 public class UserService {
