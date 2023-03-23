@@ -59,14 +59,4 @@ public class ProductEntity {
         this.inStock = inStock;
         this.stockSize = stockSize;
     }
-    @Override
-    public String toString() {
-        return "ProductEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", inStock=" + inStock +
-                ", stockSize=" + stockSize +
-                '}';
-    }
 }
