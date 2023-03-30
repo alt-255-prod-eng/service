@@ -12,17 +12,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public String saveUser(UserDTO userDTO) {
+    public String saveUser(UserDTO userDTO)
+    {
         User userToSave = new User(userDTO);
         userRepository.save(userToSave);
         return userToSave.getId();
     }
 
-    public User getUserById(String id) throws Exception {
+    public User getUserById(String id) throws Exception
+    {
         return userRepository.findById(id).orElseThrow(() -> new Exception(HttpStatus.NOT_FOUND.toString()));
     }
 
-    public void deleteUserById(String id) throws Exception {
+    public void deleteUserById(String id)
+    {
         userRepository.deleteById(id);
     }
 

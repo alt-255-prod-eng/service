@@ -1,6 +1,7 @@
 package ro.unibuc.hello.service;
 
 import junit.framework.TestCase;
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.OrderWith;
 import org.junit.runner.manipulation.Alphanumeric;
 import org.junit.runners.MethodSorters;
+import org.junit.runners.Parameterized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.DependsOn;
@@ -28,9 +30,11 @@ public class ProductServiceTestIT {
     public String productId;
 
     @Test
-    public void test_insertValidProduct_savesProductInDb() {
+    public void test_insertValidProduct_savesProductInDb()
+    {
         ProductDTO product = new ProductDTO("product", 10.0f, 30);
-        try {
+        try
+        {
             productId = productService.insertProduct(product);
         } catch (Exception e) {
             Assertions.fail("Product was not saved in the database");
@@ -46,6 +50,8 @@ public class ProductServiceTestIT {
         Assertions.assertEquals(productId, productFromDb.id);
         Assertions.assertEquals("product", productFromDb.name);
         Assertions.assertEquals(true, productFromDb.inStock);
+
+        productService.deleteProductById(productId);
     }
 
     @Test
@@ -84,6 +90,8 @@ public class ProductServiceTestIT {
         Assertions.assertEquals(productId, productFromDb.id);
         Assertions.assertEquals("product", productFromDb.name);
         Assertions.assertEquals(false, productFromDb.inStock);
+
+        productService.deleteProductById(productId);
     }
 
     @Test
@@ -101,6 +109,8 @@ public class ProductServiceTestIT {
             productService.updateProductById(productId, productToUpdate);
         });
         Assertions.assertEquals(HttpStatus.BAD_REQUEST.toString(), exception.getMessage());
+
+        productService.deleteProductById(productId);
     }
 
     @Test
