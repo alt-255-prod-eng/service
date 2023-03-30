@@ -12,8 +12,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void saveUser(UserDTO userDTO) {
-        userRepository.save(new User(userDTO));
+    public String saveUser(UserDTO userDTO) {
+        User userToSave = new User(userDTO);
+        userRepository.save(userToSave);
+        return userToSave.getId();
     }
 
     public User getUserById(String id) throws Exception {
