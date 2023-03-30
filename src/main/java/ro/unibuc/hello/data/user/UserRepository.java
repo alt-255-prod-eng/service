@@ -1,7 +1,5 @@
-package ro.unibuc.hello.data.User;
+package ro.unibuc.hello.data.user;
 
-import com.mongodb.DBObject;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

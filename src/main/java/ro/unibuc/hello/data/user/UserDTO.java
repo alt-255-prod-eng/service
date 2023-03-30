@@ -1,4 +1,4 @@
-package ro.unibuc.hello.data.User;
+package ro.unibuc.hello.data.user;
 
 public class UserDTO {
     public String getFirstName() {

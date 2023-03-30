@@ -5,13 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import ro.unibuc.hello.data.User.User;
-import ro.unibuc.hello.data.User.UserDTO;
-import ro.unibuc.hello.data.product.ProductDTO;
-import ro.unibuc.hello.data.product.ProductEntity;
+import ro.unibuc.hello.data.user.User;
+import ro.unibuc.hello.data.user.UserDTO;
 import ro.unibuc.hello.service.UserService;
-
-import java.util.List;
 
 @Controller
 public class UserController {

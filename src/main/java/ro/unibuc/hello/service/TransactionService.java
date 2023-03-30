@@ -3,7 +3,6 @@ package ro.unibuc.hello.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import ro.unibuc.hello.data.User.User;
 import ro.unibuc.hello.data.product.ProductEntity;
 import ro.unibuc.hello.data.product.ProductRepository;
 import ro.unibuc.hello.data.transaction.TransactionDTO;
