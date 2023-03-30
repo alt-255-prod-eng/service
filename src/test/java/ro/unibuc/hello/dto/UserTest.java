@@ -2,9 +2,11 @@ package ro.unibuc.hello.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import ro.unibuc.hello.data.user.User;
 import ro.unibuc.hello.data.user.UserDTO;
 
+@SpringBootTest
 public class UserTest {
     UserDTO myUserDTO = new UserDTO("John", "Snow");
     UserDTO myUserDTOEmpty = new UserDTO();

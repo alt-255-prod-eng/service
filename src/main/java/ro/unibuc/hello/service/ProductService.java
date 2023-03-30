@@ -15,7 +15,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public void insertProduct(ProductDTO product) throws Exception {
+    public String insertProduct(ProductDTO product) throws Exception {
         ProductEntity productToSave = new ProductEntity();
 
         productToSave.id = UUID.randomUUID().toString();
@@ -25,14 +25,14 @@ public class ProductService {
 
         if (productToSave.stockSize < 0) {
             throw new Exception(HttpStatus.BAD_REQUEST.toString());
-        }
-        else if (productToSave.stockSize == 0) {
+        } else if (productToSave.stockSize == 0) {
             productToSave.inStock = false;
-        }
-        else {
+        } else {
             productToSave.inStock = true;
         }
         productRepository.save(productToSave);
+
+        return productToSave.id;
     }
 
     public ProductEntity getProductById(String id) throws Exception {
