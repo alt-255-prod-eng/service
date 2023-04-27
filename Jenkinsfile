@@ -28,7 +28,6 @@ pipeline {
         }
 	stage('Compose') {
             steps{
-		sh "chmod 666 /var/run/docker.sock"
                 sh "USER_NAME=erolcherim IMAGE_TAG=${env.IMAGE_TAG} docker compose up -d"
             }
         }
