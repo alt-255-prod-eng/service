@@ -26,5 +26,15 @@ pipeline {
                 sh "git push https://$GITHUB_TOKEN@github.com/alt-255-prod-eng/service.git ${env.IMAGE_TAG}"
             }
         }
+	stage('Compose') {
+            steps{
+                sh "IMAGE_TAG = ${env.IMAGE_TAG} docker compose up -d"
+            }
+        }
+	stage('Run integration tests'){
+	        steps{
+               sh "gradlew testE2E"
+            }
+        }
     }
 }
