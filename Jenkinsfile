@@ -26,7 +26,7 @@ pipeline {
                 sh "git push https://$GITHUB_TOKEN@github.com/alt-255-prod-eng/service.git ${env.IMAGE_TAG}"
             }
         }
-	stage('Compose') {
+	stage('Deploy') {
             steps{
                 sh 'kubectl apply -f kubernetes/hello.yaml'
             }
