@@ -28,7 +28,7 @@ pipeline {
         }
 	stage('Compose') {
             steps{
-                sh "USER_NAME=erolcherim IMAGE_TAG=${env.IMAGE_TAG} docker compose up -d"
+                sh 'kubectl apply -f kubernetes/hello.yaml'
             }
         }
     }
