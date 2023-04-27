@@ -24,7 +24,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 @CucumberContextConfiguration
-@SpringBootTest()
 public class HelloWorldSteps {
 
     public static ResponseResults latestResponse = null;
