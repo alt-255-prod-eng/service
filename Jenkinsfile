@@ -33,7 +33,7 @@ pipeline {
         }
 	stage('Run integration tests'){
 	        steps{
-               sh "./gradlew test"
+               sh "./gradlew testE2E"
             }
         }
     }
