@@ -28,7 +28,7 @@ pipeline {
         }
 	stage('Deploy') {
             steps{
-                h 'kubectl apply -f kubernetes/hello.yaml'
+                sh 'kubectl apply -f kubernetes/hello.yaml'
             }
         }
 	stage('Run integration tests'){
