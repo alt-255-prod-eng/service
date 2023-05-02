@@ -26,7 +26,6 @@ import static org.hamcrest.Matchers.is;
 
 @CucumberContextConfiguration
 @SpringBootTest()
-@Tag("E2E")
 public class HelloWorldSteps {
 
     public static ResponseResults latestResponse = null;

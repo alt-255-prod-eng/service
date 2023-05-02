@@ -7,8 +7,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources")
-@SpringBootTest()
-@Tag("E2E")
+@CucumberOptions(features = "src/test/resources", tags = "E2E")
 public class HelloWorldE2E {
 }
