@@ -1,5 +1,11 @@
 package ro.unibuc.hello.controller;
 
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.Meter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -10,6 +16,7 @@ import ro.unibuc.hello.data.product.ProductEntity;
 import ro.unibuc.hello.service.ProductService;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 
 @Controller
@@ -17,14 +24,21 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    private Supplier<Number> fetchProductStock() {
+        return () -> getAllProducts().size();
+    }
+
+    private ProductController(MeterRegistry registry) {
+        Gauge.builder("product.stock", fetchProductStock()).register(registry);
+    }
+
     @PostMapping("/api/products")
     @ResponseBody
-    public void postProduct(@RequestBody ProductDTO postProduct){
+    public void postProduct(@RequestBody ProductDTO postProduct) {
         try {
             productService.insertProduct(postProduct);
-        }
-        catch (Exception e) {
-            if (e.getMessage().equals(HttpStatus.BAD_REQUEST.toString())){
+        } catch (Exception e) {
+            if (e.getMessage().equals(HttpStatus.BAD_REQUEST.toString())) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Stock size must be a positive number");
             }
             else {
@@ -52,9 +66,11 @@ public class ProductController {
 
     @GetMapping("/api/products")
     @ResponseBody
+    @Timed("product-get-latency")
     public List<ProductEntity> getAllProducts() {
         try {
-            return productService.getAllProducts();
+            List<ProductEntity> products = productService.getAllProducts();
+            return products;
         }
         catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Service not available");
